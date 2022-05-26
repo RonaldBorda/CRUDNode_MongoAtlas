@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        ul {list-style-type: none; margin: 0; padding: 0;}
+        ul > li {padding: 0.5rem 1rem;}
+       
+    </style>
+</head>
+<body>
+    
+    <div class="card bg-secondary mb-3 mx-auto p-4" style="max-width: 60rem; margin-top: 40px;">
+        <h3 class="text-warning">Chat<small class="text-muted">con Socket.io</small></h3>
+        <form id="loginForm" novalidate method="post">
+            <fieldset>
+              <legend>Comentarios</legend><hr>
+              <div class="form-group">
+                <label for="exampleTextarea" class="form-label mt-4">Mensaje</label>
+                <textarea type="text" class="form-control" id="exampleTextarea" name="nuevo-msg" id="nuevo-msg" rows="4"></textarea>
+              </div><br>
+              <button type="submit" onclick="enviar()" class="btn btn-outline-info">Enviar Mensaje</button>
+            </fieldset>
+        </form>
+        <ul class="list-style-type">
+            <li>comentario de prueba</li>
+            <li>diseño y desarrollo de software</li>
+            <li>programacion orientada a objetos</li>
+        </ul>
+
+
+    </div>
+    
+    
+
+
+
+    <!--Script-->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        const form = document.querySelector('form')
+        const input = document.querySelector('input')
+
+        let mensajes = document.querySelector('ul');
+
+        form.addEventListener('submit', (e) =>{
+            e.preventDefault()
+            if(input.value){
+                socket.emit('chat', input.value)
+                input.value = ''
+            }
+        })
+
+        socket.on('chat', (msg) =>{
+            console.log(msg);
+            let item = document.createElement('li');
+            item.textContent = msg;
+            mensajes.appendChild(item);
+            window.scrollTo(0,document.body.scrollHeight);
+        })
+        function enviar(){
+            socket.on('chat', (msg) =>{
+                socket.emit('chat', msg)
+                console.log('Mensaje: '+msg)
+            })
+        }
+        
+    </script>
+</body>
+</html>

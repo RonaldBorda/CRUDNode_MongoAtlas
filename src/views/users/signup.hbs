@@ -1,0 +1,26 @@
+<div class="col-md-6 mx-auto">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title text-center p-4">Registrarse</h4>
+            <form action="/users/signup" method="post">
+                <div class="form-group">
+                    <div class="form-floating mb-3">
+                        <input type="email" name="email" class="form-control" placeholder="Email" value="{{email}}" required>
+                        <label for="floatingInput">Email</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
+                        <label for="floatingInput">Contraseña</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" name="confirm_password" class="form-control" placeholder="Confirmar contraseña" required>
+                        <label for="floatingInput">Confirmar contraseña</label>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <button class="btn btn-success col-md-5" type="submit">Enviar</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+    </form>
+</div>

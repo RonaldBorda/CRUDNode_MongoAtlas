@@ -1,0 +1,24 @@
+<div class="row">
+    {{#each notes}}
+    <div class="col-md-3 p-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title mb-4">{{title}}</h5>
+                <p class="card-subtitle mb-2 ">Lugar: <span class="badge rounded-pill bg-info">{{site}}</span></p>
+                <hr>
+                <p class="card-text">{{description}}</p>
+                <div class="btn-group">
+                    <div class="p-4">
+                        <a href="/notes/edit/{{_id}}"><button type="submit" class="btn btn-outline-success"><i class="fa-solid fa-pen-clip"></i></button></a>
+                    </div>
+                    <div class="p-4">
+                        <form action="/notes/delete/{{_id}}?_method=DELETE" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                           <button type="submit" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></a></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
